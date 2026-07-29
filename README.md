@@ -45,6 +45,5 @@ Prateek's feedback is the core lesson here:
 ---
 
 ## 📁 Notes
-- Existing `client/` and `server/` folders are retained as placeholder scaffolding; they are not the current product focus.
 - The active work now is in the docs, journal, and problem selection process.
 

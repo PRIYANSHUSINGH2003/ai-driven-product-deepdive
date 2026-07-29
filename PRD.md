@@ -1,58 +1,42 @@
 # Product Requirement Document (PRD)
-## Project: AI Product Deep Dive — Discovery Phase
+## Project: VANI-DRISHTI Core Translation Engine (Micro-Module)
 
-### 1. Purpose
-This document captures the problem discovery process rather than a finished technical architecture. The goal is to identify one real problem worth solving, validate it with evidence, and then build a minimal AI-native solution.
+### 1. Problem Statement
+Real-time Sign Language Recognition (SLR) systems often suffer from high frame-processing latency, stream dropouts, and poor real-time audio synthesis integration. Existing approaches rely on monolithic heavy models that are difficult to run efficiently in low-latency Web environments.
 
-### 2. What We Are Looking For
-- A user problem with real demand, not just technical interest.
-- A problem in a domain we can personally connect with or directly access users for.
-- An AI-native capability that makes the solution meaningfully different from existing tools.
-- A problem small enough to ship and iterate on quickly.
+### 2. Core Objectives
+- Build a lightweight, modular real-time video stream processor using WebRTC/OpenCV.
+- Translate keypoint data (Hand/Pose landmarks) into structured textual token streams.
+- Integrate AI as a thinking and design partner for architectural optimization, prompt tuning, and edge-case handling.
+- Maintain Sub-200ms end-to-end latency for frame ingestion to text token generation.
 
-### 3. Candidate Problem Spaces
-Potential areas to explore:
-- Developer workflow friction or productivity gaps.
-- Knowledge work and collaboration bottlenecks.
-- Personal or local productivity issues you encounter daily.
-- Small accessibility or communication problems grounded in real users.
+### 3. User Personas
+- **Primary User:** Hearing and Speech Impaired individuals requiring live conversion during video calls or in-person communication.
+- **Secondary User:** Non-sign language speakers needing real-time audio/text interpretation.
 
-### 4. Objectives
-- Validate at least one problem with evidence from real users or direct experience.
-- Define the AI capability at the heart of the solution.
-- Create a small, end-to-end MVP that can be shown or tested.
-- Track decisions, assumptions, trade-offs, and AI guidance clearly in this repo.
+### 4. System Requirements & Scope
 
-### 5. User Personas (Example)
-- **Primary User:** A developer or knowledge worker with a specific daily workflow pain.
-- **Secondary User:** A teammate or customer who benefits from the AI-enabled solution.
+#### Functional Requirements
+- **Video Ingestion Pipeline:** Capture webcam frame streams efficiently without clogging the JS main thread.
+- **Feature Extraction Layer:** Extract 3D hand and pose landmarks (MediaPipe / Custom Model).
+- **Inference Engine:** Process keypoints via an optimized sequence model (LSTM / Transformer / Lightweight Neural Net).
+- **Text & Audio Output:** Emit real-time text tokens and stream TTS (Text-to-Speech) audio output.
 
-### 6. Requirements
-#### Discovery Requirements
-- Interview or observe at least one real user in the selected domain.
-- Write a short problem statement that explains why the problem matters.
-- Capture assumptions and risks explicitly.
+#### Non-Functional Requirements
+- **Latency:** End-to-end processing time < 200ms per frame batch.
+- **Resilience:** Graceful handling of low-light conditions, missing hand landmarks, and stream interruptions.
+- **Maintainability:** Clean separation between video capture, AI inference, and UI rendering layers.
 
-#### Solution Requirements
-- Identify the AI capability that enables the solution.
-- Keep scope intentionally small: one feature, one use case.
-- Build an MVP focused on evidence, not polish.
+### 5. Execution Plan
+- **Phase 0:** Live repo setup, requirements validation, architecture design, and daily decision tracking.
+- **Phase 1:** Build a client-side landmark extraction pipeline (browser/WebAssembly) and send compact keypoint data to the backend.
+- **Phase 2:** Implement backend sequence creation, model inference, and text-token generation.
+- **Phase 3:** Measure latency, log benchmark results, and handle edge-case resilience.
+- **Phase 4:** Document what worked, what failed, and how AI guidance was corrected.
 
-#### Process Requirements
-- Manage the project from day one: planning, decisions, tracking, journal entries.
-- Document when AI is used, what it suggested, and when it was corrected.
-- Share progress early and often.
-
-### 7. Execution Plan
-- **Phase 0:** Problem discovery and validation.
-- **Phase 1:** Define the AI-native solution and minimal MVP.
-- **Phase 2:** Build the MVP and validate it with users.
-- **Phase 3:** Iterate based on feedback and document learnings.
-
-### 8. Validation Criteria
-- The chosen problem is supported by evidence or direct experience.
-- The solution has a clear AI-native value proposition.
-- The MVP is small, usable, and testable.
-- Progress is documented transparently in the journal.
+### 6. Validation Criteria
+- Early deliverable: documented, working prototype that demonstrates edge landmark extraction and light-weight backend inference.
+- Evidence of product thinking: scoped problem, assumptions tested, and trade-offs explicitly recorded.
+- Transparency: repo updates and journal entries visible from the first commit.
 
 ---
