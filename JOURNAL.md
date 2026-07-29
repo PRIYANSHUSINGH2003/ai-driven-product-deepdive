@@ -1,34 +1,48 @@
 # Engineering & Decision Journal
 
-> **Purpose:** Documenting real-time decision-making, architectural iterations, AI integrations, and mistake-catch logs throughout the development of VANI-DRISHTI Core Engine.
+> **Purpose:** Track the discovery process, product decisions, AI-guided experiments, and lessons from the project reset.
 
 ---
 
-## 🗓️ Phase 0: Problem Scoping & Architecture Design
+## 🔄 Project Reset
+Prateek's feedback was clear: the repo was too early in architecture and too thin on real problem validation.
 
-### 💡 Initial Brainstorming & AI Collaboration
-- **Question Posed to AI:** "How to minimize latency when passing raw video frames to a Python/Node backend for real-time sign language detection?"
-- **AI Recommendation:** The AI initially suggested sending base64-encoded video frames over WebSocket for every single frame (30 FPS).
-- **The Catch / Where AI Was Misleading:**
-  - Base64 encoding adds ~33% overhead to payload size.
-  - Sending raw frames at 30 FPS over WebSockets creates network congestion and high server load.
-- **Architectural Correction:**
-  - Decided to move landmark/keypoint extraction (MediaPipe) to the **Client-side / Edge (Browser)** using WebAssembly.
-  - Only transfer lightweight 3D coordinate arrays (JSON/Binary Buffer) over WebSocket to the backend inference model.
-  - **Result:** Reduced network bandwidth requirement by >90%.
+This journal now captures the reset in progress:
+- stop building an engine before defining the real problem.
+- start with direct evidence of user need.
+- choose a small, honest problem that can be validated quickly.
+- keep AI at the centre of the solution definition, not just the build process.
 
 ---
 
-## 🧭 Day 0: Live Repo & Product Discipline
-- Repository opened early to show the real engineering journey instead of waiting for a polished final build.
-- Focused on **scope validation, problem research, and architecture discipline** before jumping into code.
-- Constraint chosen: one narrow, deep problem with high-quality execution rather than broad surface-level scope.
-- Immediate deliverable: a small, demonstrable prototype of edge landmark extraction and lightweight backend inference.
+## 🧭 Discovery Goals
+1. Identify a real problem from personal experience or a domain with direct user access.
+2. Validate the problem with real evidence, not assumptions.
+3. Define what AI actually enables in the solution.
+4. Build a minimal, user-testable MVP.
+5. Document every decision and every AI correction.
+
+---
+
+## 📌 Candidate Problem Areas
+- Developer workflow friction I face daily.
+- Small collaboration or knowledge work bottleneck.
+- A local productivity issue I can observe or test quickly.
+- A humble accessibility or communication problem within reach.
+
+---
 
 ## 🚦 Next Planned Milestones
-- [x] Scope PRD & System Architecture Diagram
-- [x] Open the repo with live documentation and transparent progress tracking
-- [ ] Implement client-side WebAssembly MediaPipe Pipeline
-- [ ] Build WebSocket buffer pipeline for sequence creation
-- [ ] Measure & Log Frame Processing Latency Benchmarks
-- [ ] Capture AI misdirections and fixes as part of the journal
+- [ ] Gather 2–3 candidate problems with supporting evidence.
+- [ ] Select one problem with the strongest user connection.
+- [ ] Write a clear problem statement with user pain and context.
+- [ ] Define the AI-native value proposition.
+- [ ] Build a minimal MVP for the chosen problem.
+- [ ] Share progress early and document feedback.
+
+---
+
+## 📝 Notes
+- The product is being rebuilt from the problem up.
+- The most important deliverable today is a validated problem, not technical architecture.
+

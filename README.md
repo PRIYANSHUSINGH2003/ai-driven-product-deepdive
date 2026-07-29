@@ -46,4 +46,5 @@ Prateek's feedback is the core lesson here:
 
 ## 📁 Notes
 - The active work now is in the docs, journal, and problem selection process.
+- The repository is being kept intentionally simple while the right problem is being validated.
 
