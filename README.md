@@ -36,5 +36,16 @@ Rather than building a surface-level UI, this repository focuses deeply on produ
 
 ---
 
-## 📖 Live Development Journey
-This project is built iteratively as a managed engineering initiative. Track all technical decisions, AI insights, and architectural trade-offs in our **[`JOURNAL.md`](./JOURNAL.md)**.
+## 🧭 Live Project Transparency
+This repository is intentionally open from Day 1 to make the engineering journey visible.
+- **`PRD.md`** defines the problem, scope, and target metrics.
+- **`JOURNAL.md`** captures the live decision log, AI corrections, dead ends, and trade-offs.
+- **`README.md`** explains the current architecture focus and where the work is headed.
+
+> The repo is being built rough and often, not held back for a polished reveal. Follow the progress as it happens.
+
+## 📍 Current Status
+- Problem scope defined
+- Architecture designed
+- Live documentation and tracking established
+- Next step: prototype client-side landmark extraction and backend inference pipeline

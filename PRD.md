@@ -27,4 +27,16 @@ Real-time Sign Language Recognition (SLR) systems often suffer from high frame-p
 - **Resilience:** Graceful handling of low-light conditions, missing hand landmarks, and stream interruptions.
 - **Maintainability:** Clean separation between video capture, AI inference, and UI rendering layers.
 
+### 5. Execution Plan
+- **Phase 0:** Live repo setup, requirements validation, architecture design, and daily decision tracking.
+- **Phase 1:** Build a client-side landmark extraction pipeline (browser/WebAssembly) and send compact keypoint data to the backend.
+- **Phase 2:** Implement backend sequence creation, model inference, and text-token generation.
+- **Phase 3:** Measure latency, log benchmark results, and handle edge-case resilience.
+- **Phase 4:** Document what worked, what failed, and how AI guidance was corrected.
+
+### 6. Validation Criteria
+- Early deliverable: documented, working prototype that demonstrates edge landmark extraction and light-weight backend inference.
+- Evidence of product thinking: scoped problem, assumptions tested, and trade-offs explicitly recorded.
+- Transparency: repo updates and journal entries visible from the first commit.
+
 ---

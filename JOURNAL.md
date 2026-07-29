@@ -19,8 +19,16 @@
 
 ---
 
+## 🧭 Day 0: Live Repo & Product Discipline
+- Repository opened early to show the real engineering journey instead of waiting for a polished final build.
+- Focused on **scope validation, problem research, and architecture discipline** before jumping into code.
+- Constraint chosen: one narrow, deep problem with high-quality execution rather than broad surface-level scope.
+- Immediate deliverable: a small, demonstrable prototype of edge landmark extraction and lightweight backend inference.
+
 ## 🚦 Next Planned Milestones
 - [x] Scope PRD & System Architecture Diagram
+- [x] Open the repo with live documentation and transparent progress tracking
 - [ ] Implement client-side WebAssembly MediaPipe Pipeline
 - [ ] Build WebSocket buffer pipeline for sequence creation
 - [ ] Measure & Log Frame Processing Latency Benchmarks
+- [ ] Capture AI misdirections and fixes as part of the journal
