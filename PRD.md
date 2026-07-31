@@ -16,8 +16,15 @@ Potential areas to explore:
 - Knowledge work and collaboration bottlenecks.
 - Personal or local productivity issues you encounter daily.
 - Small accessibility or communication problems grounded in real users.
+- AI-era hiring and screening friction, where polished AI-generated artifacts make builder authenticity hard to judge.
 
-### 4. Objectives
+### 4. Chosen Early Problem
+- **Core friction:** AI makes resumes, essays, code samples, and even commit histories appear polished, while hiding whether a candidate truly understands and owns the work.
+- **Hypothesis:** evaluating process signals — commit history depth, prompt-to-commit evolution, reasoning artifacts, and candidate explanations — is a more reliable signal of real builder capability than artifact quality alone.
+- **AI-native angle:** use AI to parse, summarize, and surface evidence from development workflows and candidate interactions, rather than just generating a final artifact.
+- **Validation plan:** build a lean MVP that collects and surfaces process signals from candidate repos and workflows, then test it with real hiring users.
+
+### 5. Objectives
 - Validate at least one problem with evidence from real users or direct experience.
 - Define the AI capability at the heart of the solution.
 - Create a small, end-to-end MVP that can be shown or tested.

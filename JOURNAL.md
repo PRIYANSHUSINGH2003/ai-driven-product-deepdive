@@ -42,7 +42,28 @@ This journal now captures the reset in progress:
 
 ---
 
-## 📝 Notes
+## � Current Signal from Prateek
+- Problem: screening real builders in the AI era, when polished AI-generated code and essays can mask performance.
+- Opportunity: build a product that evaluates process, not just artifact, using candidate workflow evidence.
+- Why it matters: this is a problem I am living now as a candidate, which gives direct insight and credibility.
+
+### Shortlist
+1. **AI-Era Candidate Authenticity & Evaluation Engine (Top Pick)**
+   - Friction: AI makes traditional resume/GitHub screening obsolete.
+   - Angle: evaluate commit history depth, prompt-to-commit evolution, and real-time architectural reasoning.
+   - Strategy: keep it lean and low-cost with open-source tools, free-tier APIs, and GitHub telemetry.
+
+2. **VANI-DRISHTI Sub-module (Secondary)**
+   - Friction: latency and frame dropouts in real-time sign language/video stream processing.
+   - Angle: use WebAssembly client-side landmark extraction to reduce server load.
+
+### Current Decision
+- Lock in **Option 1** as the primary problem to explore and document.
+- Start capturing problem discovery, PRD, and lean architecture in this journal.
+
+---
+
+## �📝 Notes
 - The product is being rebuilt from the problem up.
 - The most important deliverable today is a validated problem, not technical architecture.
 

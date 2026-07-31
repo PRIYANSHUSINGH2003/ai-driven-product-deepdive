@@ -13,6 +13,11 @@ This repo is now in a pivot state. The previous sign-language engine idea is bei
 
 The current work is about finding the right problem and validating it before choosing any stack or architecture.
 
+### Chosen Early Focus
+- **Problem:** hiring and screening builders in the AI era, where polished AI-generated artifacts can mask real capability.
+- **Solution direction:** evaluate the candidate process and evidence rather than only the final code or essay.
+- **Why it matters:** this is a problem I am living as a candidate, which gives direct insight and credibility.
+
 ---
 
 ## 🧭 Why This Reset Matters
