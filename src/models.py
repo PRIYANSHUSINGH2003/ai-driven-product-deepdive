@@ -1,66 +1,108 @@
-"""
-models.py
----------
-Lightweight dataclasses used to pass structured data between ingestion,
-analysis, scoring, and presentation layers. Kept dependency-free (stdlib only)
-so the core logic never requires a specific web framework or ORM.
-"""
-from dataclasses import dataclass, field
-from typing import Optional
+"""Domain models for the CandidateSignal evidence pipeline."""
+from __future__ import annotations
+
+from dataclasses import asdict, dataclass, field
+from typing import Any, Optional
 
 
-@dataclass
+@dataclass(slots=True)
 class CommitRecord:
     sha: str
     message: str
-    author_date: str          # ISO 8601 string
+    author_date: str
     additions: int = 0
     deletions: int = 0
 
 
-@dataclass
+@dataclass(slots=True)
 class RepoTelemetry:
     name: str
     full_name: str
     html_url: str
     created_at: str
     pushed_at: str
-    is_fork: bool
-    stargazers_count: int
-    language: Optional[str]
-    commits: list = field(default_factory=list)          # list[CommitRecord]
+    updated_at: str = ""
+    default_branch: str = "main"
+    is_fork: bool = False
+    is_archived: bool = False
+    is_disabled: bool = False
+    stargazers_count: int = 0
+    watchers_count: int = 0
+    open_issues_count: int = 0
+    size_kb: int = 0
+    language: Optional[str] = None
+    commits: list[CommitRecord] = field(default_factory=list)
     pull_request_count: int = 0
+    contributor_count: int = 0
     max_file_tree_depth: int = 0
     file_count: int = 0
-    fetch_error: Optional[str] = None                     # populated if partial fetch failure
+    tree_truncated: bool = False
+    fetch_error: Optional[str] = None
+    pr_data_available: bool = True
+    contributor_data_available: bool = True
+    tree_data_available: bool = True
 
 
-@dataclass
+@dataclass(slots=True)
 class RedFlag:
     code: str
-    severity: str            # "high" | "medium" | "low"
+    severity: str
     message: str
-    evidence: dict = field(default_factory=dict)
+    evidence: dict[str, Any] = field(default_factory=dict)
+    category: str = "observation"
 
 
-@dataclass
+@dataclass(slots=True)
 class RepoAnalysis:
     repo: RepoTelemetry
-    velocity_consistency_score: float
+    activity_continuity_score: float
     structural_depth_score: float
-    pr_engagement_score: float
-    message_quality_score: float
-    red_flags: list = field(default_factory=list)         # list[RedFlag]
+    workflow_score: float
+    communication_score: float
+    maintenance_score: float
+    breadth_score: float
+    red_flags: list[RedFlag] = field(default_factory=list)
+    data_quality: float = 1.0
+    evidence_notes: list[str] = field(default_factory=list)
+
+    @property
+    def weighted_score(self) -> float:
+        from . import config
+
+        values = {
+            "activity_continuity": self.activity_continuity_score,
+            "structural_depth": self.structural_depth_score,
+            "workflow": self.workflow_score,
+            "communication": self.communication_score,
+            "maintenance": self.maintenance_score,
+            "breadth": self.breadth_score,
+        }
+        return round(sum(values[k] * config.SCORE_WEIGHTS[k] for k in config.SCORE_WEIGHTS), 2)
 
 
-@dataclass
+@dataclass(slots=True)
 class CandidateReport:
     username: str
+    target: str
+    analysis_mode: str
     repos_analyzed: int
     rule_based_score: float
     final_score: float
     llm_narrative: Optional[str]
     llm_used: bool
-    repo_analyses: list = field(default_factory=list)      # list[RepoAnalysis]
-    aggregate_red_flags: list = field(default_factory=list)  # list[RedFlag]
-    errors: list = field(default_factory=list)
+    llm_provider: str = "none"
+    llm_adjustment: int = 0
+    confidence: float = 0.0
+    data_quality: float = 0.0
+    repo_analyses: list[RepoAnalysis] = field(default_factory=list)
+    aggregate_red_flags: list[RedFlag] = field(default_factory=list)
+    verification_questions: list[str] = field(default_factory=list)
+    positive_evidence: list[str] = field(default_factory=list)
+    limitations: list[str] = field(default_factory=list)
+    errors: list[str] = field(default_factory=list)
+    generated_at: str = ""
+    analysis_limits: dict[str, Any] = field(default_factory=dict)
+    rate_limit_snapshot: dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
