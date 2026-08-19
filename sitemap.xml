@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Replace this placeholder with the real deployed Streamlit custom subdomain before submitting. -->
   <url>
-    <loc>https://YOUR-APP-SUBDOMAIN.streamlit.app/</loc>
+    <loc>https://candidatesignal.streamlit.app/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

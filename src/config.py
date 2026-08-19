@@ -42,6 +42,8 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY", "").strip()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
 APP_API_KEY = os.getenv("APP_API_KEY", "").strip()
 
+PUBLIC_APP_URL = os.getenv("PUBLIC_APP_URL", "https://candidatesignal.streamlit.app").strip().rstrip("/")
+
 LLM_PROVIDER = os.getenv("LLM_PROVIDER", "mistral").strip().lower()
 MISTRAL_MODEL = os.getenv("MISTRAL_MODEL", "mistral-large-latest").strip()
 
