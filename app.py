@@ -57,7 +57,7 @@ st.markdown(
       [data-testid="stSidebar"] { border-right: 1px solid var(--cs-border); }
       [data-testid="stSidebar"] > div:first-child { padding-top: 1rem; }
 
-      .brandbar { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:1.8rem; margin-bottom:1.1rem; }
+      .brandbar { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:1rem; margin-bottom:1.1rem; }
       .brandmark { display:flex; align-items:center; gap:.72rem; }
       .logo {
         width:2.55rem; height:2.55rem; border-radius:13px; display:grid; place-items:center;
