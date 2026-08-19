@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Streamlit Community Cloud manages crawler access for the hosted app.
+# If this project is moved to custom hosting, keep this file at the domain root.
+# Sitemap: https://YOUR-APP-SUBDOMAIN.streamlit.app/sitemap.xml

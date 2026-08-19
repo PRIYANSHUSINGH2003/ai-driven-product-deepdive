@@ -1,0 +1,9 @@
+{
+  "name": "CandidateSignal",
+  "short_name": "CandidateSignal",
+  "description": "Auditable GitHub engineering evidence review for developers and technical reviewers.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#11131a",
+  "background_color": "#11131a"
+}

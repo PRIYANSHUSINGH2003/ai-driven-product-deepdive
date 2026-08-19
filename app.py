@@ -10,9 +10,22 @@ import streamlit as st
 
 from src.github_client import GitHubClientError, GitHubRateLimitError, get_rate_limit_status
 from src.pipeline import analyze_candidate
+from src.seo import (
+    AUTHOR_GITHUB,
+    AUTHOR_LINKEDIN,
+    AUTHOR_NAME,
+    AUTHOR_PORTFOLIO,
+    KEYWORDS,
+    PROJECT_GITHUB,
+    SITE_DESCRIPTION,
+    SITE_NAME,
+    SITE_TITLE,
+    build_structured_data,
+    render_discovery_context,
+)
 
 st.set_page_config(
-    page_title="CandidateSignal · Engineering Evidence",
+    page_title=SITE_TITLE,
     page_icon="◈",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -44,7 +57,7 @@ st.markdown(
       [data-testid="stSidebar"] { border-right: 1px solid var(--cs-border); }
       [data-testid="stSidebar"] > div:first-child { padding-top: 1rem; }
 
-      .brandbar { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top: 1.9rem; margin-bottom:1.1rem; }
+      .brandbar { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:1.8rem; margin-bottom:1.1rem; }
       .brandmark { display:flex; align-items:center; gap:.72rem; }
       .logo {
         width:2.55rem; height:2.55rem; border-radius:13px; display:grid; place-items:center;
@@ -107,6 +120,11 @@ st.markdown(
       .dimension b { color:inherit; }
 
       .footer-note { color:var(--cs-muted); font-size:.7rem; line-height:1.55; padding-top:.65rem; }
+      .discovery-context { border-top:1px solid var(--cs-border); margin-top:1.15rem; padding-top:1rem; color:var(--cs-muted); }
+      .discovery-context p { margin:0; max-width:1050px; line-height:1.65; font-size:.79rem; }
+      .seo-links { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:.6rem; }
+      .seo-links a { color:var(--cs-muted); text-decoration:none; border:1px solid var(--cs-border); border-radius:999px; padding:.28rem .55rem; font-size:.68rem; }
+      .seo-links a:hover { border-color:var(--cs-border-strong); color:inherit; }
 
       @media (max-width: 1100px) {
         .metric-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
@@ -138,6 +156,12 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
+# Search/discovery signals. Streamlit Community Cloud indexes public apps and
+# recommends a descriptive page title plus strong visible text near the top.
+st.markdown(f"<script type='application/ld+json'>{build_structured_data()}</script>", unsafe_allow_html=True)
+st.markdown(f"<meta name='description' content='{SITE_DESCRIPTION}'>", unsafe_allow_html=True)
+st.markdown(f"<meta name='keywords' content='{KEYWORDS}'>", unsafe_allow_html=True)
 
 
 # -----------------------------------------------------------------------------
@@ -284,6 +308,8 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+st.markdown(render_discovery_context(), unsafe_allow_html=True)
+
 with st.sidebar:
     st.markdown("### Analyze")
     target = st.text_input(
@@ -374,6 +400,15 @@ if report is None:
     with c:
         st.markdown("<div class='surface'><div class='surface-title'>03 · Verify</div><div class='surface-subtitle'>Turn observations into neutral work-sample or interview questions.</div></div>", unsafe_allow_html=True)
     st.markdown("<div class='neutral-box' style='margin-top:1rem'><div class='box-title'>Safety boundary</div><div class='box-copy'>GitHub telemetry does not prove authorship, skill, intent, misconduct, or AI use. CandidateSignal is a structured evidence aid for human review.</div></div>", unsafe_allow_html=True)
+    st.markdown(
+        f"<div class='discovery-context'><div class='section-label'>About the project</div>"
+        f"<p>CandidateSignal is built by <strong>{AUTHOR_NAME}</strong> as an open engineering project focused on transparent GitHub evidence review.</p>"
+        f"<div class='seo-links'><a href='{PROJECT_GITHUB}' target='_blank'>Project on GitHub ↗</a>"
+        f"<a href='{AUTHOR_GITHUB}' target='_blank'>Developer GitHub ↗</a>"
+        f"<a href='{AUTHOR_PORTFOLIO}' target='_blank'>Portfolio ↗</a>"
+        f"<a href='{AUTHOR_LINKEDIN}' target='_blank'>LinkedIn ↗</a></div></div>",
+        unsafe_allow_html=True,
+    )
     st.stop()
 
 # -----------------------------------------------------------------------------
@@ -576,4 +611,8 @@ with export_tab:
     )
     st.caption("No data is persisted by this workspace by default. The export is created only when you request it.")
 
-st.markdown("<div class='footer-note'>CandidateSignal is an evidence-review aid. Treat every score as an input to human investigation, not as a hiring verdict.</div>", unsafe_allow_html=True)
+st.markdown(
+    f"<div class='footer-note'>{SITE_NAME} is an evidence-review aid. Treat every score as an input to human investigation, not as a hiring verdict.<br>"
+    f"Built by <a href='{AUTHOR_PORTFOLIO}' target='_blank'>{AUTHOR_NAME}</a> · <a href='{PROJECT_GITHUB}' target='_blank'>GitHub</a> · <a href='{AUTHOR_LINKEDIN}' target='_blank'>LinkedIn</a></div>",
+    unsafe_allow_html=True,
+)
