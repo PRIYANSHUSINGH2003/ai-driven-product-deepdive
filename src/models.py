@@ -82,15 +82,15 @@ class RepoAnalysis:
 
 @dataclass(slots=True)
 class CandidateReport:
+    # Keep the original constructor contract first for backward compatibility.
     username: str
     repos_analyzed: int
     rule_based_score: float
     final_score: float
     llm_narrative: Optional[str]
     llm_used: bool
-    # Backward-compatible metadata introduced in schema v2.
-    # Defaults keep existing callers/tests that construct the first v1 fields
-    # positionally or by keyword working without weakening the runtime schema.
+
+    # Newer fields are optional/defaulted so older callers/tests keep working.
     target: str = ""
     analysis_mode: str = "profile"
     llm_provider: str = "none"
@@ -109,4 +109,3 @@ class CandidateReport:
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
-
