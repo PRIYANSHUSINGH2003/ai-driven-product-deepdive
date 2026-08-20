@@ -83,13 +83,16 @@ class RepoAnalysis:
 @dataclass(slots=True)
 class CandidateReport:
     username: str
-    target: str
-    analysis_mode: str
     repos_analyzed: int
     rule_based_score: float
     final_score: float
     llm_narrative: Optional[str]
     llm_used: bool
+    # Backward-compatible metadata introduced in schema v2.
+    # Defaults keep existing callers/tests that construct the first v1 fields
+    # positionally or by keyword working without weakening the runtime schema.
+    target: str = ""
+    analysis_mode: str = "profile"
     llm_provider: str = "none"
     llm_adjustment: int = 0
     confidence: float = 0.0
